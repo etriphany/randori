@@ -12,4 +12,4 @@ WORKDIR     /home/randori
 COPY        /script ./
 
 # Run
-ENTRYPOINT  ["/home/randori/spec/tests.sh"]
+ENTRYPOINT  ["/home/randori/it/tests.sh"]

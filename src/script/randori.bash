@@ -101,7 +101,7 @@ usage() {
 }
 
 run() {
-    # Find and declare 'test_" functions
+    # Find and declare 'test_' functions
     local test_pattern="test[a-zA-Z0-9_]\+"
     local tests=$(declare -F | \
         sed -ne '/'"$test_pattern"'$/ { s/declare -f // ; p }')
