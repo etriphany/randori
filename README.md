@@ -5,12 +5,17 @@
 </p>
 <h3 align="center">IoT Integration Test Toolkit</h3>
 
+<p align="center">
+ <img src="https://raw.githubusercontent.com/etriphany/randori/master/docs/img/runner.gif" width="688" height="216"/>
+</p>
+
 Randori was created to support integration tests on IoT projects.
 
 It is shipped as a lightweight [Docker](www.docker.com) image and includes the following tools:
 - [libcoap](https://libcoap.net): Provides a client for __CoAP__ based APIs
 - [jq](https://stedolan.github.io/jq): Command line __JSON__ processor
 - [bashunit](https://github.com/djui/bashunit): Test utils based on __bash__
+
 
 ## Requirements
 - [Docker](www.docker.com)
