@@ -13,7 +13,7 @@ asserts_skipped=0
 #
 # $1: Expression
 assert() {
-    if $* ; then _passed ; else _failed "$*" ; fi
+    if $* ; then _passed ; else _failed "$*" true ; fi
 }
 
 # Assert that a given output string is equal to an expected string.
