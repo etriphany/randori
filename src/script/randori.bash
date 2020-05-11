@@ -113,7 +113,12 @@ run() {
     fi
 
     # Setup
-    if [ "$(LC_ALL=C type -t setup)" = function ]; then setup; fi
+    if [ "$(LC_ALL=C type -t setup)" = function ]; then
+        if [ $verbose -ge 1 ] ; then
+            echo -e "\033[37;1msetup\033[0m"
+        fi
+        setup;
+    fi
 
     # Run tests
     for test in $tests ;
@@ -125,7 +130,12 @@ run() {
     done
 
     # Teardown
-    if [ "$(LC_ALL=C type -t teardown)" = function ]; then teardown; fi
+    if [ "$(LC_ALL=C type -t teardown)" = function ]; then
+        if [ $verbose -ge 1 ] ; then
+            echo -e "\033[37;1mteardown\033[0m"
+        fi
+        teardown;
+    fi
 
     # Report
     if [ $verbose -gt 1 ] ; then
