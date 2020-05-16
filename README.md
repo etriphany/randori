@@ -1,7 +1,7 @@
 
 <h1 align="center">Randori</h1>
 <p align="center">
- <img src="https://raw.githubusercontent.com/etriphany/randori/master/docs/img/randori.png" height="194"/>
+ <img src="https://raw.githubusercontent.com/etriphany/randori/master/docs/img/randori.png" width="400"/>
 </p>
 <h3 align="center">IoT Integration Test Toolkit</h3>
 
@@ -21,21 +21,16 @@ It is shipped as a lightweight [Docker](www.docker.com) image and includes the f
 - [Docker](www.docker.com)
 
 ## Install
+```bash
+  $ docker pull docker.pkg.github.com/etriphany/randori/randori:1.0.0
 ```
-  $ docker pull etriphany/randori
-```
 
-## Running
+## Setup your tests
 
-Randori requires a volume bind that mounts your test script inside the Docker container. So we have to follow one simple name convention to make it work properly:
+Create a folder `it` into your project structure and create 2 files inside.
 
->You must create your tests on  a file called `tests.sh` and keep it inside a folder called `it` inside your project.
->
->  like: **/your_project/it/tests.sh**
->
-
-
-The `tests.sh` is where you write all your tests, and it has the following structure:
+> `tests.sh`
+> ### See Implementing Tests
 ```bash
   #!/bin/bash
 
@@ -45,23 +40,26 @@ The `tests.sh` is where you write all your tests, and it has the following struc
 
   source $(dirname $(dirname $0))/randori.bash
 ```
-You can add as many test you want, just don't remove the last line used to **bootstrap the test runner**.
 
-Once you have your tests in place, you can excute them:
+> `randori.sh`
+```bash
+#!/bin/bash
+
+docker run --rm -ti --network host -v "$(dirname `pwd`)"/it:/home/randori/it docker.pkg.github.com/etriphany/randori/randori:1.0.0 $@
 
 ```
-$ cd your_project
-$ docker run --rm -ti --network host -v "$(pwd)"/it:/home/randori/it etriphany/randori
+Run your test:
+
+```bash
+ $ ./randori.sh
 ```
-
-Options available for test execution:
-> - -v, --verbose:   Print expected and provided values
-> - -s, --summary:   Only print summary omitting individual test results
-> - -q, --quiet:     Do not print anything to standard output
-> - -l, --lineshow:  Show failing or skipped line after line number
-> - -f, --failed:    Print only individual failed test results
-> - -h, --help:      Show usage screen
-
+> ### Avilable options
+>  -v, --verbose:   Print expected and provided values \
+>  -s, --summary:   Only print summary omitting individual test results \
+>  -q, --quiet:     Do not print anything to standard output \
+>  -l, --lineshow:  Show failing or skipped line after line number \
+>  -f, --failed:    Print only individual failed test results \
+>  -h, --help:      Show usage screen
 
 ## Implementing Tests
 
