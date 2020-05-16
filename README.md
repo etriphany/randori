@@ -6,7 +6,7 @@
 <h3 align="center">IoT Integration Test Toolkit</h3>
 
 <p align="center">
- <img src="https://raw.githubusercontent.com/etriphany/randori/master/docs/img/runner.gif" width="688" height="216"/>
+ <img src="https://raw.githubusercontent.com/etriphany/randori/master/docs/img/runner.gif" width="738" height="252"/>
 </p>
 
 Randori was created to support integration tests on IoT projects.
@@ -53,7 +53,7 @@ Run your test:
 ```bash
  $ ./randori.sh
 ```
-> ### Avilable options
+> ### Available options
 >  -v, --verbose:   Print expected and provided values \
 >  -s, --summary:   Only print summary omitting individual test results \
 >  -q, --quiet:     Do not print anything to standard output \
@@ -252,9 +252,8 @@ This function is called only once, after all test have been executed.
   #!/bin/bash
 
   test_example() {
-
+    assertLessThan 5 10
   }
-  assertLessThan 5 10
 ```
 - __assertAtMost__: integer is less than or equal to an expected integer
 ```bash
@@ -293,7 +292,7 @@ This function is called only once, after all test have been executed.
 ### Using coap-client and jq in your tests
 
 Randori try to include useful tools into the mix, so you can create very powerful
-integartion tests for your REST APIs.
+integration tests for your REST APIs.
 
 Take a look.
 
@@ -304,7 +303,7 @@ The coap-client can be used to perform CoAP requests, like:
 
 The jq can be used to parse the JSON documents, like:
 ```bash
-  $ jq '.name' <<< "{\"name\": \"Randori\"}
+  $ jq '.name' <<< "{\"name\": \"Randori\"}"
 ```
 
 So we can basically combine them to make assertions about an API:
@@ -314,9 +313,9 @@ So we can basically combine them to make assertions about an API:
   test_coap_get() {
     local resp=$(coap-client -m get coap://host/d/config | sed -Ee '/v:1 t:CON/d')
     # check name
-    assertEqualStr $(jq '.name' <<< $resp) "\"Randori\""
+    assertEqualStr $(jq '.name' <<< "$resp") "\"Randori\""
     # with jq just assert can be used, look:
-    assert $(jq '.name == "Randori"' <<< $resp)
+    assert $(jq '.name == "Randori"' <<< "$resp")
     assert $(jq '. | map(.friends) | length == 4' <<< "$response")
   }
 
