@@ -3,6 +3,8 @@
 # Extended from BashUnit:
 # https://github.com/djui/bashunit
 #
+# Copyright (c) 2012, Uwe Dauernheim <uwe@dauernheim.net>
+# All rights reserved.
 
 source $(dirname 0)/assert.bash
 
