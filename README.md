@@ -196,7 +196,7 @@ This function is called only once, after all test have been executed.
 
   source $(dirname $(dirname $0))/randori.bash
 ```
--__assertNotReturn__: last command's return code is not equal to an expected integer
+- __assertNotReturn__: last command's return code is not equal to an expected integer
 ```bash
   #!/bin/bash
 
