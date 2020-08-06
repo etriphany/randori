@@ -1,6 +1,6 @@
 FROM        alpine:3.11
 LABEL       maintainer "etriphany.com"
-ENV         OS_PACKAGES "bash grep jq libcoap"
+ENV         OS_PACKAGES "bash grep jq libcoap ca-certificates mosquitto-clients"
 
 # Setup
 RUN         apk add ${OS_PACKAGES} --update --no-cache && \
