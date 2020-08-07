@@ -1,0 +1,1 @@
+docker run --rm -ti --network host -v %~dp0:/home/randori/it docker.pkg.github.com/etriphany/randori/randori:1.1.0 %*

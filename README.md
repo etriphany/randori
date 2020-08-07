@@ -26,12 +26,13 @@ It is shipped as a lightweight [Docker](www.docker.com) image and includes the f
   $ docker pull docker.pkg.github.com/etriphany/randori/randori:1.1.0
 ```
 
-## Setup your tests
+## Setup Your Tests
 
 Create a folder `it` into your project structure and create 2 files inside.
 
+1. Test script mounted inside Alpine container (always as shell script)
+
 > `tests.sh`
-> ### See Implementing Tests
 ```bash
  #!/bin/bash
 
@@ -42,6 +43,7 @@ test_example() {
 source $(dirname $(dirname $0))/randori.bash
 ```
 
+2. CLI for host machine (shell script or batch)
 > `randori.sh`
 ```bash
  #!/bin/bash
@@ -49,7 +51,14 @@ source $(dirname $(dirname $0))/randori.bash
 docker run --rm -ti --network host -v "$(dirname `pwd`)"/it:/home/randori/it docker.pkg.github.com/etriphany/randori/randori:1.1.0 $@
 
 ```
-Run your test:
+> `randori.bat`
+```
+docker run --rm -ti --network host -v %~dp0:/home/randori/it docker.pkg.github.com/etriphany/randori/randori:1.1.0 %*
+```
+
+## Run Your Tests
+
+Use the CLI script to interact with your tests.
 
 ```bash
 $ ./randori.sh
@@ -333,7 +342,7 @@ source $(dirname $(dirname $0))/randori.bash
 
 The __mosquitto_sub__ can be used to subscribe MQTT topics, like:
 ```bash
-  $  mosquitto_sub --C 1 -W 10 -L mqtt://user:pass@host:1234/topic-name
+  $  mosquitto_sub -L mqtt://user:pass@host:1234/topic-name
 ```
 
 The __mosquitto_pub__ can be used to publish into MQTT topics, like:
