@@ -366,7 +366,7 @@ test_mqtt_message() {
   assert $(mosquitto_pub -f payload.json mqtt://user:pass@host:1234/command/relay)
   # wait for relay change status (1st message or timeout in 10 seconds)
   local response=$(mosquitto_sub -C 1 -W 10 -L mqtt://user:pass@host:1234/event/relay/1)
-  # or even simpler by using jq built in features:
+  # check state
   assert $(jq '.state == "on"' <<< "$response")
 }
 
